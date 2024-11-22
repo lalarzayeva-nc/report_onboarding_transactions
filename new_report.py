@@ -38,7 +38,7 @@ df['created_datetime_dubai'] = df['created_datetime_dubai'].dt.strftime('%d-%m-%
 
 # Preprocessing the data
 df_verifications = df_verifications[['user_id', 'email', 'verification_status', 'created_at', 'attempted_at', 'which_month']]
-df_verifications.rename(columns = {'created_at':'user_onboarded_at'}, inplace =True)
+df_verifications.rename(columns = {'user_id':'consumer_id','created_at':'user_onboarded_at'}, inplace =True)
 df = df[['created_datetime_dubai', 'consumer_id', 'email', 'order_id', 'reference', 'order_amount', 'plan_name', 'order_status', 'merchant_name', 'which_month']]
 df.rename(columns={'order_amount':'order_amount_qar'}, inplace = True)
 df['order_amount_usd'] = df['order_amount_qar'] * 0.27
@@ -62,7 +62,7 @@ df_pl['created_datetime_dubai'] = df_pl['created_datetime_dubai'].dt.strftime('%
 
 # Preprocessing the data
 df_verifications_pl = df_verifications_pl[['user_id', 'email', 'verification_status', 'created_at', 'attempted_at', 'which_month']]
-df_verifications_pl.rename(columns = {'created_at':'user_onboarded_at'}, inplace =True)
+df_verifications_pl.rename(columns = {'user_id':'consumer_id','created_at':'user_onboarded_at'}, inplace =True)
 df_pl = df_pl[['created_datetime_dubai', 'consumer_id', 'email', 'order_id', 'reference', 'order_amount', 'plan_name', 'order_status', 'merchant_name', 'which_month']]
 df_pl.rename(columns={'order_amount':'order_amount_qar'}, inplace = True)
 df_pl['order_amount_usd'] = df_pl['order_amount_qar'] * 0.27
