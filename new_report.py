@@ -39,6 +39,8 @@ df['created_datetime_dubai'] = df['created_datetime_dubai'].dt.strftime('%d-%m-%
 # Preprocessing the data
 df_verifications = df_verifications[['user_id', 'email', 'verification_status', 'created_at', 'attempted_at', 'which_month']]
 df_verifications.rename(columns = {'user_id':'consumer_id','created_at':'user_onboarded_at'}, inplace =True)
+
+df_verifications['user_onboarded_at'] = pd.to_datetime(df_verifications['user_onboarded_at'], errors='coerce')
 df_verifications = df_verifications.sort_values(by='user_onboarded_at', ascending=False)
 df_verifications = df_verifications.reset_index()
 del(df_verifications['index'])
@@ -47,6 +49,8 @@ df = df[['created_datetime_dubai', 'consumer_id', 'email', 'order_id', 'referenc
 df.rename(columns={'created_datetime_dubai': 'transaction date','order_amount':'order_amount_qar'}, inplace = True)
 df['order_amount_usd'] = df['order_amount_qar'] * 0.27
 df = df[['transaction date', 'consumer_id', 'email', 'order_id', 'reference', 'order_amount_qar', 'order_amount_usd','plan_name', 'order_status', 'merchant_name', 'which_month']]
+
+df['transaction date'] = pd.to_datetime(df['transaction date'], errors='coerce')
 df = df.sort_values(by='transaction date', ascending=False)
 df = df.reset_index()
 del(df['index'])
@@ -67,6 +71,8 @@ df_pl['created_datetime_dubai'] = df_pl['created_datetime_dubai'].dt.strftime('%
 # Preprocessing the data
 df_verifications_pl = df_verifications_pl[['user_id', 'email', 'verification_status', 'created_at', 'attempted_at', 'which_month']]
 df_verifications_pl.rename(columns = {'user_id':'consumer_id','created_at':'user_onboarded_at'}, inplace =True)
+
+df_verifications_pl['user_onboarded_at'] = pd.to_datetime(df_verifications_pl['user_onboarded_at'], errors='coerce')
 df_verifications_pl= df_verifications_pl.sort_values(by='user_onboarded_at', ascending=False)
 df_verifications_pl = df_verifications_pl.reset_index()
 del(df_verifications_pl['index'])
@@ -75,6 +81,8 @@ df_pl = df_pl[['created_datetime_dubai', 'consumer_id', 'email', 'order_id', 're
 df_pl.rename(columns={'created_datetime_dubai': 'transaction date','order_amount':'order_amount_qar'}, inplace = True)
 df_pl['order_amount_usd'] = df_pl['order_amount_qar'] * 0.27
 df_pl = df_pl[['transaction date', 'consumer_id', 'email', 'order_id', 'reference', 'order_amount_qar', 'order_amount_usd','plan_name', 'order_status', 'merchant_name', 'which_month']]
+
+df_pl['transaction date'] = pd.to_datetime(df_pl['transaction date'], errors='coerce')
 df_pl = df_pl.sort_values(by='transaction date', ascending=False)
 df_pl = df_pl.reset_index()
 del(df_pl['index'])
